@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="light">
+	<meta name="supported-color-schemes" content="light">
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body
+    style="font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #070b2b;">
+    <div
+        style="max-width: 600px; margin: 0 auto; background: #0f163f; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);">
+        <div
+            style="background: linear-gradient(135deg, #ede9fe 0%, #c4b5fd 100%); padding: 40px 20px; text-align: center;">
+            <img src="https://vlaqcfzmsjzgmzxodhkd.supabase.co/storage/v1/object/public/email-assets/orbiit-logo-email.png" alt="Orbiit" style="display:block; margin: 0 auto 14px auto; width: 132px; max-width: 45%; height: auto; border:0;">
+      <h1 style="color: #111827 !important; -webkit-text-fill-color: #111827; text-shadow: none; margin: 0; font-size: 32px;">Your date is in 1 hour! ⏳</h1>
+        </div>
+
+        <div style="padding: 40px 30px;">
+            <h2 style="color: #ffffff; font-size: 24px; margin-top: 0;">Hi {{firstName}},</h2>
+
+            <p style="color: #ffffff; font-size: 16px; margin: 20px 0;">
+                Your date with {{partnerName}} is coming up in just an hour! Here are the details:
+            </p>
+
+            <div
+                style="background: rgba(129, 140, 248, 0.12); border-left: 4px solid #6f5bff; padding: 20px; margin: 25px 0; border-radius: 4px; color: #ffffff !important;">
+                <h3 style="color: #ffffff; margin-top: 0; font-size: 18px; margin-bottom: 16px;">Date Details:</h3>
+
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 8px 0; color: #ffffff; width: 120px;"><strong>Date:</strong></td>
+                        <td style="padding: 8px 0; color: #ffffff;">{{weekday}}, {{date}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #ffffff;"><strong>Time:</strong></td>
+                        <td style="padding: 8px 0; color: #ffffff;">{{time}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #ffffff;"><strong>Location:</strong></td>
+                        <td style="padding: 8px 0; color: #ffffff;">{{locationName}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #ffffff;"><strong>Address:</strong></td>
+                        <td style="padding: 8px 0; color: #ffffff;">{{locationAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 0; color: #ffffff;"><strong>Match Phone:</strong></td>
+                        <td style="padding: 8px 0; color: #ffffff;">{{partnerPhone}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p style="color: #ffffff; font-size: 16px; margin: 20px 0;">
+                We hope you have a wonderful time!
+            </p>
+
+            <div style="text-align: center; margin: 35px 0;">
+                <a href="https://www.yourorbiit.com/dates"
+    style="background-color: #e9d5ff; background: linear-gradient(135deg, #e9d5ff 0%, #c4b5fd 100%); border: 1px solid #a78bfa; color: #111827 !important; -webkit-text-fill-color: #111827; padding: 16px 40px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px; display: inline-block; box-shadow: 0 4px 10px rgba(167, 139, 250, 0.28);">
+    <span style="color: #111827 !important; -webkit-text-fill-color: #111827; text-shadow: none;">View Date Details</span>
+</a>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid rgba(148, 163, 184, 0.25);">
+                <p style="color: #ffffff; font-size: 14px;">
+                    Best regards,<br>
+                    The Orbiit Team
+                </p>
+                <img src="https://vlaqcfzmsjzgmzxodhkd.supabase.co/storage/v1/object/public/email-assets/orbiit-logo-email.png"
+                    style="display: block; height: auto; border: 0; width: 50%;" width="50%" alt title height="auto">
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 20px; color: #ffffff; font-size: 12px;">
+        <p>© {{year}} Orbiit. All rights reserved.</p>
+    </div>
+</body>
+
+</html>

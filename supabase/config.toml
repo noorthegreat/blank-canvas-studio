@@ -1,0 +1,59 @@
+project_id = "vlaqcfzmsjzgmzxodhkd"
+
+[functions.generate-compatibility]
+verify_jwt = true
+
+[functions.daily-cron]
+verify_jwt = false
+
+[functions.calculate-ages]
+verify_jwt = true
+
+[functions.check-mutual-likes]
+verify_jwt = false
+
+[functions.send-user-emails]
+verify_jwt = false
+static_files = [ "./functions/send-user-emails/_templates/new-match.html", 
+"./functions/send-user-emails/_templates/auto-cancelled-date.html", 
+"./functions/send-user-emails/_templates/match-cancelled.html",
+"./functions/send-user-emails/_templates/date-cancelled.html",
+"./functions/send-user-emails/_templates/new-date.html",
+"./functions/send-user-emails/_templates/date-reminder.html",
+"./functions/send-user-emails/_templates/date-update.html",
+"./functions/send-user-emails/_templates/no-overlap.html",
+"./functions/send-user-emails/_templates/first-confirm.html",
+"./functions/send-user-emails/_templates/date-rescheduled.html",
+"./functions/send-user-emails/_templates/date-confirmed-details.html",
+"./functions/send-user-emails/_templates/date-update-reset.html",
+"./functions/send-user-emails/_templates/new-dates-launch.html",
+"./functions/send-user-emails/_templates/date-reminder-1d.html",
+"./functions/send-user-emails/_templates/date-reminder-1h.html",
+"./functions/send-user-emails/_templates/date-reminder-soon.html",
+"./functions/send-user-emails/_templates/date-planning-reminder-48h.html",
+"./functions/send-user-emails/_templates/date-planning-reminder-soon.html",
+"./functions/send-user-emails/_templates/event-announcement.html",
+"./functions/send-user-emails/_templates/blank-announcement.html",
+ ]
+
+[functions.event-matcher]
+verify_jwt = true
+
+[functions.update-user-email]
+verify_jwt = true
+import_map = "./functions/update-user-email/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/update-user-email/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/update-user-email/*.html" ]
+
+[functions.debug-seed-date-flow]
+verify_jwt = true
+
+[functions.admin-list-profile-stats]
+verify_jwt = true
+
+[functions.match-users]
+verify_jwt = false

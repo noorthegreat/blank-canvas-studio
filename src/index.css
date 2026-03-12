@@ -1,85 +1,243 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import 'tailwindcss';
 
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap');
+@utility font-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >=--theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+
+  @media (width >=1400px) {
+    max-width: 1400px;
+  }
+}
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-backgrounda: hsl(var(--backgrounda));
+  --color-backgroundb: hsl(var(--backgroundb));
+  --color-backgroundc: hsl(var(--backgroundc));
+  --color-orbiit: hsl(var(--orbiit));
+  --color-orbiitbright: hsl(var(--orbiitbright));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes float-left {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(-10px);
+    }
+  }
+
+  @keyframes float-right {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(10px);
+    }
+  }
+
+  --animate-float-left: float-left 6s ease-in-out infinite;
+  --animate-float-right: float-right 6s ease-in-out infinite;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility popover-content {
+  @apply bg-popover text-popover-foreground z-50;
+  min-width: var(--radix-popover-trigger-width);
+  max-height: 300px;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 252 40% 98%;
+    --foreground: 252 25% 10%;
+
+    --backgroundb: 236 78% 18%;
+    --backgrounda: 236 78% 18%;
+    --backgroundc: 262 84% 38%;
+    --orbiit: 258 62% 56%;
+    --orbiitbright: 262 88% 46%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 252 25% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 252 25% 10%;
 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 262 82% 62%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 246 76% 66%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 252 50% 95%;
+    --muted-foreground: 252 15% 55%;
 
-    --accent: 240 5% 64.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 268 76% 72%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 4.9% 83.9%;
+    --border: 252 25% 90%;
+    --input: 252 25% 90%;
+    --ring: 262 82% 62%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(262 82% 62%), hsl(236 78% 56%));
+    --gradient-soft: linear-gradient(180deg, hsl(252 40% 98%), hsl(246 30% 95%));
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
-
-    /* Typography scale */
-    --font-size-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-    --font-size-h2: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
-    --font-size-h1: clamp(2.5rem, 1.75rem + 3.75vw, 4.5rem);
-
-    /* Interaction */
-    --easing: cubic-bezier(0.32, 0.72, 0, 1);
-
-    /* Shadows */
-    --shadow-button: 0 0 0 1px hsl(var(--border)), 0 1px 2px -1px rgba(0,0,0,.06);
-    --shadow-button-hover: 0 0 0 1px hsl(var(--border)), 0 1px 2px -1px rgba(0,0,0,.08), 0 3px 6px rgba(0,0,0,.06);
-    --shadow-card: 0 0 0 1px rgba(0,0,0,.05), 0 2px 4px rgba(0,0,0,.03), 0 4px 12px rgba(0,0,0,.03);
-    --shadow-input: 0 0 0 1px hsl(var(--border));
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --background: 236 80% 13%;
+    --foreground: 252 10% 95%;
+
+    --card: 236 32% 12%;
+    --card-foreground: 252 10% 95%;
+
+    --popover: 236 32% 12%;
+    --popover-foreground: 252 10% 95%;
+
+    --primary: 262 82% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 246 76% 66%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 236 24% 18%;
+    --muted-foreground: 252 10% 65%;
+
+    --accent: 268 76% 72%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 236 25% 20%;
+    --input: 236 25% 20%;
+    --ring: 262 82% 62%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(262 82% 62%), hsl(236 78% 56%));
+    --gradient-soft: linear-gradient(180deg, hsl(236 35% 8%), hsl(246 30% 10%));
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -92,60 +250,129 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-timing-function: var(--easing);
-    transition-duration: 150ms;
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background-color: #0f0620;
+    overscroll-behavior-y: none;
   }
 
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  * {
+    @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-size: var(--font-size-body);
-    line-height: 1.6;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
-  }
-
-  h1 { font-size: var(--font-size-h1); }
-  h2 { font-size: var(--font-size-h2); }
-
-  p {
-    text-wrap: pretty;
-    max-width: 65ch;
-  }
-
-  img {
-    outline: 1px solid hsla(0, 0%, 0%, 0.08);
-    outline-offset: -1px;
-  }
-
-  code, pre, .font-mono {
-    font-feature-settings: 'tnum' on, 'ss01' on;
-    font-variant-numeric: tabular-nums;
+    @apply text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    min-height: 100dvh;
+    -webkit-overflow-scrolling: touch;
+    background-color: #0f0620;
   }
 }
 
-@layer components {
-  .btn-shadow {
-    box-shadow: var(--shadow-button);
+@layer utilities {
+
+
+  .glass-border {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 8px #ffffff26;
   }
-  .btn-shadow:hover {
-    box-shadow: var(--shadow-button-hover);
+
+  .glass-border:before {
+    content: "";
+    border-radius: inherit;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    background: linear-gradient(165deg, #ffffff26 0%, #ffffff0d 100%), linear-gradient(165deg, #fffc 0%, #ffffff4d 20%, #fff0 50%), linear-gradient(345deg, #fff6 0%, #ffffff26 20%, #fff0 50%);
+    padding: 1px;
+    position: absolute;
+    inset: 0;
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-position: 0 0, 0 0;
+    mask-position: 0 0, 0 0;
+    -webkit-mask-size: auto, auto;
+    mask-size: auto, auto;
+    -webkit-mask-repeat: repeat, repeat;
+    mask-repeat: repeat, repeat;
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-origin: content-box, border-box;
+    mask-origin: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    -webkit-mask-source-type: auto, auto;
+    mask-mode: match-source, match-source;
   }
-  .card-shadow {
-    box-shadow: var(--shadow-card);
+
+  .glass-border-bottom {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 8px #ffffff26;
   }
-  .input-shadow {
-    box-shadow: var(--shadow-input);
+
+  .glass-border-bottom:before {
+    content: "";
+    border-radius: inherit;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    background: linear-gradient(165deg, #ffffff26 0%, #ffffff0d 100%), linear-gradient(165deg, #fffc 0%, #ffffff4d 20%, #fff0 50%), linear-gradient(345deg, #fff6 0%, #ffffff26 20%, #fff0 50%);
+    padding: 0 0 1px 0;
+    position: absolute;
+    inset: 0;
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-position: 0 0, 0 0;
+    mask-position: 0 0, 0 0;
+    -webkit-mask-size: auto, auto;
+    mask-size: auto, auto;
+    -webkit-mask-repeat: repeat, repeat;
+    mask-repeat: repeat, repeat;
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-origin: content-box, border-box;
+    mask-origin: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    -webkit-mask-source-type: auto, auto;
+    mask-mode: match-source, match-source;
   }
+
+  .glass-button {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    position: relative;
+    box-shadow: inset 0 0 8px #ffffff26;
+  }
+
+  .glass-button:before {
+    content: "";
+    border-radius: inherit;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    background: linear-gradient(165deg, #ffffff26 0%, #ffffff0d 100%), linear-gradient(165deg, #fffc 0%, #ffffff4d 20%, #fff0 50%), linear-gradient(345deg, #fff6 0%, #ffffff26 20%, #fff0 50%);
+    padding: 1px;
+    position: absolute;
+    inset: 0;
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-position: 0 0, 0 0;
+    mask-position: 0 0, 0 0;
+    -webkit-mask-size: auto, auto;
+    mask-size: auto, auto;
+    -webkit-mask-repeat: repeat, repeat;
+    mask-repeat: repeat, repeat;
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-origin: content-box, border-box;
+    mask-origin: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    -webkit-mask-source-type: auto, auto;
+    mask-mode: match-source, match-source;
+  }
+
 }
