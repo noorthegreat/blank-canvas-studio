@@ -59,7 +59,7 @@ const Profile = () => {
   const loadProfile = async (userId: string) => {
     setIsLoading(true);
     try {
-      const [{ data, error }, { data: privateData }] = await Promise.all([
+      const [{ data, error }, { data: privateDataRaw }] = await Promise.all([
         supabase.from("profiles").select("*").eq("id", userId).maybeSingle(),
         supabase
           .from("private_profile_data" as any)
@@ -67,6 +67,7 @@ const Profile = () => {
           .eq("user_id", userId)
           .maybeSingle(),
       ]);
+      const privateData = privateDataRaw as { last_name?: string | null; latitude?: number | null; longitude?: number | null; phone_number?: string | null } | null;
 
       if (error) throw error;
 

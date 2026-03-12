@@ -30,7 +30,7 @@ export const AdminDateManagerTab = ({ onViewDateAsUser, onEmailDate }: AdminDate
     const getStatusLabel = (status?: string) => {
         if (!status) return "unknown";
         if (status === "confirmed") return "scheduled";
-        return status.replaceAll("_", " ");
+        return status.split("_").join(" ");
     };
 
     const getStatusBadgeClass = (status?: string) => {

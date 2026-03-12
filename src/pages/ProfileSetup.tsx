@@ -117,7 +117,8 @@ const ProfileSetup = () => {
         .maybeSingle();
 
       Promise.all([profilePromise, privateDataPromise]).then(
-        ([{ data }, { data: privateData }]) => {
+        ([{ data }, { data: privateDataRaw }]) => {
+          const privateData = privateDataRaw as { last_name?: string | null; birthday?: string | null; latitude?: number | null; longitude?: number | null; phone_number?: string | null } | null;
           if (data) {
             setFirstName(data.first_name || "");
             setLastName(privateData?.last_name || "");

@@ -35,7 +35,7 @@ type DateType = {
     user2_id: string;
     user1_confirmed: boolean;
     user2_confirmed: boolean;
-    status: "pending" | "confirmed" | "limbo" | "completed" | "cancelled";
+    status: "pending" | "confirmed" | "limbo" | "completed" | "cancelled" | "auto_cancelled";
     user1_feedback: string | null;
     user2_feedback: string | null;
     user1_followup_preference: "match" | "friend" | "pass" | null;
