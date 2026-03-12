@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import type { Easing } from "framer-motion";
+
+const EASE: Easing = [0.32, 0.72, 0, 1];
 
 const fadeUp = {
   initial: { opacity: 0, y: 8 },
   whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: [0.32, 0.72, 0, 1] },
+  transition: { duration: 0.4, ease: EASE },
   viewport: { once: true },
 };
 
