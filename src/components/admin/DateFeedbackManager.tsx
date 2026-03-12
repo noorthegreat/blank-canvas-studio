@@ -110,7 +110,7 @@ export const DateFeedbackManager = () => {
 
             if (privateError) throw privateError;
 
-            const privateByUser = new Map((privateRows || []).map((r: any) => [r.user_id, r]));
+            const privateByUser = new Map(((privateRows || []) as Array<{ user_id: string; last_name: string | null }>).map((r) => [r.user_id, r]));
             const enrichedRows = rows.map((ans: any) => ({
                 ...ans,
                 user: {

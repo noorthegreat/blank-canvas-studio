@@ -18,7 +18,7 @@ export const LongPressButton = ({
 }: LongPressButtonProps) => {
     const [isPressing, setIsPressing] = useState(false);
     const [progress, setProgress] = useState(0);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const startTimeRef = useRef<number | null>(null);
 
     const onLongPressRef = useRef(onLongPress);
