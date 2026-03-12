@@ -159,7 +159,7 @@ const loadLatestPrivateProfile = async (userId: string): Promise<PrivateProfileD
         .maybeSingle();
 
     if (error) throw error;
-    return data as PrivateProfileData | null;
+    return data as unknown as PrivateProfileData | null;
 };
 
 const DateView = ({ dateId, viewerId, readOnly: readOnlyProp = false }: DateViewProps) => {
