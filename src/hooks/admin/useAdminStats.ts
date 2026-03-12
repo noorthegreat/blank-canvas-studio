@@ -106,10 +106,10 @@ const parseOpenToCodes = (raw?: string): string[] => {
         // Ignore parse errors and fallback to token split.
     }
     return trimmed
-        .replaceAll("[", "")
-        .replaceAll("]", "")
-        .replaceAll("\"", "")
-        .replaceAll("'", "")
+        .replace(/\[/g, "")
+        .replace(/\]/g, "")
+        .replace(/"/g, "")
+        .replace(/'/g, "")
         .split(/[,;| ]+/)
         .map((v) => v.trim())
         .filter(Boolean);
