@@ -298,18 +298,13 @@ const Matches = () => {
           const isFriendship = match.match_type === "friendship";
           const activeMyLikes = isFriendship ? myFriendLikes : myLikes;
           const activeTheirLikes = isFriendship ? theirFriendLikes : theirLikes;
+          const matchedUser = profile
+            ? { ...profile, last_name: "", latitude: null as number | null, longitude: null as number | null }
+            : { id: match.matched_user_id, first_name: "Unknown User", last_name: "", bio: null, age: null, latitude: null as number | null, longitude: null as number | null, additional_photos: null };
           return {
             id: match.id,
             compatibility_score: match.compatibility_score,
-            matched_user: profile || {
-              id: match.matched_user_id,
-              first_name: "Unknown User",
-              last_name: "",
-              bio: null,
-              age: null,
-              latitude: null,
-              longitude: null,
-            },
+            matched_user: matchedUser,
             isLikedByMe: activeMyLikes.has(match.matched_user_id),
             isLikedByThem: activeTheirLikes.has(match.matched_user_id),
             from_algorithm: match.from_algorithm,

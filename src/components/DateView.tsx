@@ -142,7 +142,14 @@ interface DateViewProps {
     readOnly?: boolean;
 }
 
-const loadLatestPrivateProfile = async (userId: string) => {
+type PrivateProfileData = {
+    last_name: string | null;
+    phone_number: string | null;
+    latitude: number | null;
+    longitude: number | null;
+};
+
+const loadLatestPrivateProfile = async (userId: string): Promise<PrivateProfileData | null> => {
     const { data, error } = await supabase
         .from("private_profile_data" as any)
         .select("last_name, phone_number, latitude, longitude, updated_at")
@@ -152,7 +159,7 @@ const loadLatestPrivateProfile = async (userId: string) => {
         .maybeSingle();
 
     if (error) throw error;
-    return data;
+    return data as PrivateProfileData | null;
 };
 
 const DateView = ({ dateId, viewerId, readOnly: readOnlyProp = false }: DateViewProps) => {
