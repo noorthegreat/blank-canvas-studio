@@ -47,14 +47,14 @@ const Index = () => {
           </motion.p>
           <motion.h1
             {...fadeUp}
-            transition={{ duration: 0.4, delay: 0.05, ease: [0.32, 0.72, 0, 1] }}
+            transition={{ duration: 0.4, delay: 0.05, ease: EASE }}
             className="font-semibold text-foreground mb-6"
           >
             Blank Site.
           </motion.h1>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.4, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
+            transition={{ duration: 0.4, delay: 0.1, ease: EASE }}
             className="text-muted-foreground text-lg leading-relaxed mb-10"
           >
             A foundational starting point. A minimal set of styles and
@@ -63,7 +63,7 @@ const Index = () => {
           </motion.p>
           <motion.div
             {...fadeUp}
-            transition={{ duration: 0.4, delay: 0.15, ease: [0.32, 0.72, 0, 1] }}
+            transition={{ duration: 0.4, delay: 0.15, ease: EASE }}
             className="flex items-center gap-3"
           >
             <button className="btn-shadow bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-[box-shadow,opacity] duration-200">
