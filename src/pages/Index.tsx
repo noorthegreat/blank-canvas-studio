@@ -136,7 +136,7 @@ const Index = () => {
           </motion.h2>
           <motion.p
             {...fadeUp}
-            transition={{ duration: 0.4, delay: 0.05, ease: [0.32, 0.72, 0, 1] }}
+            transition={{ duration: 0.4, delay: 0.05, ease: EASE }}
             className="text-muted-foreground mb-12"
           >
             Foundational atoms, ready to compose.
